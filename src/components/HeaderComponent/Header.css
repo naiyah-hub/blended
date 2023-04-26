@@ -1,0 +1,43 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(2, 3, 32);
+    /* position: fixed; */
+    padding: 20px 80px;
+    z-index: 1;
+}
+
+#headerbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#headerbar li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#headerbar li a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgb(236, 236, 236);
+    transition: 0.3s ease-in-out;
+}
+
+#headerbar li a:hover{
+    color:rgb(136, 255, 156);
+}
+
+#headerbar li a:hover::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: rgb(136, 255, 156);
+    position: absolute;
+    bottom: -4px;
+    left: 20px
+}
