@@ -3,35 +3,94 @@ import Header from "../components/HeaderComponent/Header"
 import Navbar from "../components/NavBarComponent/Navbar"
 import Footer from "../components/FooterComponent/FooterComponent"
 import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
-// import FamilyTree from './components/FamilyTree/FamilyTree';
-
-// const familyData = {
-//   // ... your family data
-// };
-
+import FamilyTree  from '../components/TreeComponent/familyTree';
+import members, { addChild } from '../components/TreeComponent/family';
 
 const App = () => {
-    const [showAddNodeBar, setShowAddNodeBar] = useState(false);
-  
-    const handleAddNodeClick = () => {
-      setShowAddNodeBar(true);
-    };
-  
-    const handleGoBackClick = () => {
-      setShowAddNodeBar(false);
-    };
-  
-    return (
-      <div className="app">
-        <Header />
-        {!showAddNodeBar && <Navbar onAddNodeClick={handleAddNodeClick} />}
-        {showAddNodeBar && <AddNodeBar onGoBackClick={handleGoBackClick} />}
-        <main>
-          {/* <h1>Family Tree</h1> */}
-        </main>
-        <Footer />
-      </div>
-    );
+  const [showAddNodeBar, setShowAddNodeBar] = useState(false);
+
+  const handleAddNodeClick = () => {
+    setShowAddNodeBar(true);
+  };
+
+  const handleGoBackClick = () => {
+    setShowAddNodeBar(false);
   };
   
-  export default App;
+  const [currentMember, setCurrentMember] = useState(null);
+
+  const handleMemberClick = (member) => {
+    setCurrentMember(member);
+  };
+
+  // const [members, setFamilyMembers] = useState(members);
+
+  const handleCreatePerson = (event) => {
+    event.preventDefault();
+  
+    const name = event.target.name.value;
+    const dob = event.target.dob.value;
+    const relation = event.target.relation.value;
+    const isAlive = event.target.alive.checked;
+  
+    const newMember = {
+      name,
+      dob,
+      isAlive,
+      children: [],
+      avatar: "",
+      id: Date.now(), //unique ID, timestamp
+    };
+    
+    // if a current Member is selected 
+    if (currentMember) {
+    
+      // Add the new member based on the selected relation
+      switch (relation) {
+        case "sibling":
+          // Add sibling logic here
+          break;
+        case "parent":
+          // Add parent logic here
+          break;
+        case "child":
+          console.log("adding child ", newMember.name);
+          // const updatedFamilyMembers = addChild(members, currentMember.id, newMember);
+          // setFamilyMembers(updatedFamilyMembers);
+          break;
+        
+        default:
+          console.error("Invalid relation type:", relation);
+      }
+    }
+    // Reset the form
+    event.target.reset();
+  };
+  
+  return (
+    <div className="app">
+      <Header />
+      <div className="app-main-content">
+        <div className="app-navbar-container">
+
+          {!showAddNodeBar && (
+            <Navbar onAddNodeClick={handleAddNodeClick} />
+          )}
+          {showAddNodeBar && (
+            <AddNodeBar
+              onGoBackClick={handleGoBackClick}
+              onSubmit={handleCreatePerson}
+            />
+          )}
+        </div>
+        <div className="family-tree-container">
+          <FamilyTree members={members} onMemberClick={handleMemberClick} />
+          {currentMember && <p>Current member: {currentMember.name}</p>}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
