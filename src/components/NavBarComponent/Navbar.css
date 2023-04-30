@@ -5,12 +5,13 @@ nav {
     background-color: #f1f1f1;
     padding: 10px;
     border-right: 1px solid #cccccc;
-    position: fixed;
+    /* position: fixed; */
+    position: relative;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 200px;
-    z-index: -1;
+    width: 250px;
+    /* z-index: -1; */
 }
 
 form {
@@ -18,10 +19,6 @@ form {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
-}
-
-input[type="text"] {
-    width: 200px;
 }
 
 label {
@@ -38,4 +35,4 @@ label {
     width: 10px;
     cursor: ew-resize;
     background-color: rgba(0, 0, 0, 0.1); /* Add this line to give the handle a light gray background */
-}
+} 
