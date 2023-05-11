@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import Member from "./member";
 
@@ -12,33 +12,18 @@ const hasChildren = (member) => {
   return member.children && member.children.length;
 };
 
-const FamilyTree = ({ members, level = 0, onMemberClick, isParents = false }) => {
-  const renderParents = (member) => {
-    if (member.partner && member.partner.parents) {
-      return (
-        <FamilyTree
-          members={member.partner.parents}
-          level={level - 1}
-          onMemberClick={onMemberClick}
-          isParents
-        />
-      );
-    }
-    return null;
-  };
-
+const FamilyTree = ({ members, level = 0, onMemberClick }) => {
   return (
     <>
       <StyledWrapper level={level}>
-        {members.map((member, i) => (
+        {members && members.map((member, i) => (
           <div key={`level-${level}-${i}`}>
-            {!isParents && renderParents(member)}
             <div style={{ display: "flex" }}>
               <Member {...member} onMemberClick={onMemberClick} />
               {member.partner && (
                 <Member
                   {...member.partner}
-                  onMemberClick={onMemberClick}
+                  // onMemberClick={onMemberClick} // Disabled partner clicking
                 />
               )}
             </div>
