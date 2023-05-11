@@ -5,7 +5,7 @@ const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
     return (
     
         <nav className="add-node-nav" id="add-node-nav">
-            <button id="go-back" onClick={onGoBackClick} >Go Back</button>
+            <button id="go-back" onClick={onGoBackClick} >Menu</button>
             <form id="create-node-form" onSubmit={onSubmit}>
                 <label>
                     Name:
@@ -15,9 +15,6 @@ const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
                 <label>
                     DOB:
                     <input type="text" id="dob" required/>
-                </label>
-                <label>
-                    <input type="radio" name="relation" value="parent" required/> Parent
                 </label>
                 <label>
                     <input type="radio" name="relation" value="child" required/> Child
