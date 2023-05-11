@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { MdPerson } from "react-icons/md";
 
 const StyledWrapper = styled.div`
-  margin: 10px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid; */
+  // border: 1px solid; 
 `;
 
 const StyledAvatar = styled.div`
@@ -15,16 +15,6 @@ const StyledAvatar = styled.div`
   border: 1px solid;
   border-radius: 50%;
 `;
-
-const StyledLine = styled.div`
-  position: "absolute";
-  right: 0;
-  bottom: 0;
-  /* height: 10px;
-  width: 10px; */
-  /* background-color: red; */
-`;
-
 const Member = (member) => {
   const defaultAvatar = <MdPerson style={{ fontSize: 50 }} />;
   const { name, avatar, onMemberClick } = member;
@@ -39,3 +29,14 @@ const Member = (member) => {
 };
 
 export default Member;
+
+
+// const StyledLine = styled.div`
+//   position: "absolute";
+//   right: 0;
+//   bottom: 0;
+//   /* height: 10px;
+//   width: 10px; */
+//   /* background-color: red; */
+// `;
+
