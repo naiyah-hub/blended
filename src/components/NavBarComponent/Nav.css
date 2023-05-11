@@ -1,0 +1,38 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-right: 1px solid #cccccc;
+    /* position: fixed; */
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    /* z-index: -1; */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.resize-handle {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    cursor: ew-resize;
+    background-color: rgba(0, 0, 0, 0.1); /* Add this line to give the handle a light gray background */
+} 

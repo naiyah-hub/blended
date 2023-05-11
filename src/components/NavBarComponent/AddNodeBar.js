@@ -1,6 +1,5 @@
 import * as React from "react";
-import "./Navbar.css"
-// import { SideNav } from './SideNav';
+import "./Nav.css"
 
 
 const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
@@ -17,10 +16,6 @@ const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
                 <label>
                     DOB:
                     <input type="text" id="dob" required/>
-                </label>
-
-                <label>
-                    <input type="radio" name="relation" value="sibling" required/> Sibling
                 </label>
                 <label>
                     <input type="radio" name="relation" value="parent" required/> Parent

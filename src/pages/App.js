@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Nav from "../components/NavComponent/Nav"
-import Sidebar from "../components/SideBarComponent/Sidebar"
+import Nav from "../components/NavBarComponent/Nav"
 import Footer from "../components/FooterComponent/FooterComponent"
-import AddNodeBar from "../components/SideBarComponent/AddNodeBar"
+import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
 import FamilyTree  from '../components/TreeComponent/familyTree';
 import members, { addChild } from '../components/TreeComponent/family';
 
@@ -69,26 +68,28 @@ const App = () => {
   
   return (
     <div className="app">
-      <Nav/>
-      <div className="app-main-content">
+      
         <div className="app-sidebar-container">
-
           {!showAddNodeBar && (
-            <Sidebar onAddNodeClick={handleAddNodeClick} />
+            <Nav onAddNodeClick={handleAddNodeClick} />
           )}
           {showAddNodeBar && (
             <AddNodeBar
               onGoBackClick={handleGoBackClick}
               onSubmit={handleCreatePerson}
             />
-          )}
+          )}          
         </div>
+        
+
         <div className="family-tree-container">
           <FamilyTree members={members} onMemberClick={handleMemberClick} />
           {currentMember && <p>Current member: {currentMember.name}</p>}
         </div>
+      
+      <div className="app-footer">
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
