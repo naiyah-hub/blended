@@ -1,11 +1,10 @@
 import * as React from "react";
 import "./Nav.css"
 
-
 const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
     return (
     
-        <nav id="add-node-nav" class="hidden">
+        <nav className="add-node-nav" id="add-node-nav">
             <button id="go-back" onClick={onGoBackClick} >Go Back</button>
             <form id="create-node-form" onSubmit={onSubmit}>
                 <label>
@@ -24,10 +23,13 @@ const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
                     <input type="radio" name="relation" value="child" required/> Child
                 </label>
                 <label>
+                    <input type="radio" name="relation" value="partner" required/> Partner
+                </label>
+                <label>
                     Alive:
                     <input type="checkbox" id="alive"/>
                 </label>
-                <button type="submit">Create Person</button>
+                <button type="submit">Create Member</button>
             </form>
         </nav>
     )
