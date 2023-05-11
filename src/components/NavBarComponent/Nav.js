@@ -1,7 +1,19 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
+import "./Nav.css"
 
 const Nav = ({ onAddNodeClick }) => {
+    
+    const handleSaveClick = () => {
+        const input = document.querySelector('.family-tree-container');
+        html2canvas(input)
+          .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            saveAs(imgData, 'family-tree.png');
+          });
+      };
+
     return(
         <nav>
             <link
@@ -9,15 +21,11 @@ const Nav = ({ onAddNodeClick }) => {
             rel= "stylesheet"
             />   
 
-            <div class="logo">
-                <i class='bx bx-menu menu-icon'></i>
-                <span class="logo-name">Blended</span>
-            </div>
-
             <div class="sidebar">
+                
                 <div class="logo">
                     <i class='bx bx-menu menu-icon'></i>
-                    <span class="logo-name">Blended</span>
+                    <span class="logo-name"></span>
                 </div>
 
 
@@ -42,9 +50,9 @@ const Nav = ({ onAddNodeClick }) => {
                             </a>
                         </li>
                         <li class="list">
-                            <a href="#" class="nav-link">
-                                <i class='bx bxs-down-arrow-circle icon'></i>
-                                <span class="link">Save</span>
+                            <a href="#" class="nav-link" onClick={handleSaveClick}>
+                            <i class='bx bxs-down-arrow-circle icon'></i>
+                            <span class="link">Save</span>
                             </a>
                         </li>
                         <li class="list">
