@@ -1,0 +1,50 @@
+header{
+  background-color: #e3e3e3;
+}
+
+header .sidebar{
+  position: flex; 
+  height: 100%;
+  padding: 20px ;
+  font-size: 200px;
+  background-color: #e3e3e3;
+  box-shadow: 0 5px 1px rgba(0,0,0,0.1);
+}
+
+form {
+  margin-top: 60px;
+  margin-right: 300px;
+  display: fixed;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  display: flex;
+  font-weight: 400;
+  margin-left: 15px;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.title-name{
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.create{
+  font-size: 24px;
+  color: #000000;
+}
+
+
+.resize-handle {
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1); /* Add this line to give the handle a light gray background */
+  font-family: 'Poppins', sans-serif;
+} 

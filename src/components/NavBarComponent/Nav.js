@@ -61,12 +61,6 @@ const Nav = ({ onAddNodeClick }) => {
                             <span className="link">Save</span>
                             </a>
                         </li>
-                        <li className="list">
-                            <a href="#!" className="nav-link">
-                                <i className='bx bx-folder-open icon' ></i>
-                                <span className="link">Files</span>
-                            </a>
-                        </li>
 
                         </ul>
                         <div className="bottom-content">

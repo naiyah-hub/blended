@@ -1,9 +1,9 @@
 footer {
     display: flex;
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
-    padding: 10px;
     position: fixed;
+    padding: 5px;
     bottom: 0;
     right: 0;
     z-index: 1.5;
@@ -22,12 +22,15 @@ footer-icon .sym{
     cursor: pointer;
   }
 
-  .sym .graphic-last{
-    color: #ffffff;
-    font-size: 28px;
-    cursor: pointer;
-  }
+button :hover{
+    background-color: #ade9c8;
+    color: #000000;
+ }
 
+  button{
+    background-color: transparent;
+    border-color: #000000;
+  }
 
 
 /*

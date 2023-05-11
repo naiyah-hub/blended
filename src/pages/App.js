@@ -5,19 +5,30 @@ import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
 import FamilyTree  from '../components/TreeComponent/familyTree';
 import initialFamily, { addChild, addPartner} from '../components/TreeComponent/family';
 import Header from "../components/HeaderComponent/Header";
+import EditNodeBar from "../components/NavBarComponent/EditNodeBar";
+
 
 const App = () => {
 
   const contentContainerRef = useRef(null);
 
   const [showAddNodeBar, setShowAddNodeBar] = useState(false);
+  const [showEditNodeBar, setShowEditNodeBar] = useState(false);
+
 
   const handleAddNodeClick = () => {
     setShowAddNodeBar(true);
   };
-
+  
+  
   const handleGoBackClick = () => {
     setShowAddNodeBar(false);
+    setShowEditNodeBar(false);
+  };
+  
+  const handleEditNodeClick = () => {
+    setShowEditNodeBar(true);
+    setShowAddNodeBar(false); // hide the AddNodeBar if it's visible
   };
   
   const [currentMember, setCurrentMember] = useState(null);
@@ -78,6 +89,41 @@ const App = () => {
     event.target.reset();
   };
 
+  const handleEditPerson = (event, id) => {
+    event.preventDefault();
+  
+    const name = event.target.name.value;
+    const dob = event.target.dob.value;
+    const avatar = event.target.avatar.value;
+    const isAlive = event.target.alive.checked;
+  
+    const updateMember = (members) => {
+      return members.map(member => {
+        if (member.id === id) {
+          return {
+            ...member,
+            name,
+            dob,
+            avatar,
+            isAlive,
+          }
+        } else if (member.children.length > 0) {
+          return {
+            ...member,
+            children: updateMember(member.children)
+          }
+        } else {
+          return member;
+        }
+      });
+    }
+  
+    setFamilyMembers(updateMember(family));
+  
+    // Reset the form
+    event.target.reset();
+  };
+
   const handleZoomIn = () => {
     if (contentContainerRef.current) {
       contentContainerRef.current.style.transform = 'translate(-50%, -50%) scale(1.1)';
@@ -109,15 +155,26 @@ const App = () => {
         <Header />
         
         <div className="app-sidebar-container">
-          {!showAddNodeBar && (
-            <Nav onAddNodeClick={handleAddNodeClick} />
+          {!showAddNodeBar && !showEditNodeBar && (
+              <Nav onAddNodeClick={handleAddNodeClick} onEditNodeClick={handleEditNodeClick} />
           )}
           {showAddNodeBar && (
-            <AddNodeBar className = "add-node-nav" id="add-node-nav"
+              <AddNodeBar 
+              className="add-node-nav" 
+              id="add-node-nav"
               onGoBackClick={handleGoBackClick}
               onSubmit={handleCreatePerson}
+              currentMember={currentMember}
+              onEditClick={handleEditNodeClick}
             />
-          )}      
+          )}
+          {showEditNodeBar && currentMember && (
+              <EditNodeBar 
+                  onGoBackClick={handleGoBackClick}
+                  onSubmit={(e) => handleEditPerson(e, currentMember.id)}
+                  member={currentMember}
+              />
+          )}
         </div>
         
         <div className="content-container" ref={contentContainerRef}>
@@ -126,7 +183,7 @@ const App = () => {
           </div>
           {currentMember && (
             <div className="current-member-container">
-              <p>Current member: {currentMember.name}</p>
+              <p>Current Member: {currentMember.name}</p>
             </div>
           )}
         </div>

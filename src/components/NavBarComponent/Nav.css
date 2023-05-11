@@ -13,6 +13,13 @@
     z-index: 1.5;
 }
 
+.add-node-nav button{
+  cursor: pointer;
+  padding: 5px;
+  background-color: #ade9c8;
+  color: #fff;
+}
+
 .add-node-nav form {
     display: flex;
     flex-direction: column;
@@ -46,7 +53,6 @@
     top: 0;
     bottom: 0;
     width: 10px;
-    cursor: ew-resize;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -66,6 +72,8 @@ nav {
     display: flex;
     align-items: center;
     margin: 0 24px;
+    font-size: 84pt;
+    
   }
   
   .logo .menu-icon{
@@ -119,11 +127,15 @@ nav {
   }
   
   .nav-link .icon{
-    margin-right: 14px;
+    margin-right: 10px;
     font-size: 20px;
     color: #000000;
   }
-  
+  .nav-link .icon2{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #000000;
+  }
   .nav-link .link{
     font-size: 16px;
     color: #000000;
@@ -133,6 +145,58 @@ nav {
   .nav-link:hover .icon,
   .nav-link:hover .link{
     color: #fff;
+    cursor: pointer;
   }
   
   
+.edit-node-nav {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 5px 1px rgba(0,0,0,0.1);
+  z-index: 1.5;
+}
+
+.edit-node-nav form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 30px 16px;
+    list-style: none;
+}
+
+.edit-node-nav label {
+    display: flex;
+    align-items: center;
+    padding: 14px 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    gap: 5px;
+}
+
+.edit-node-nav label:hover {
+    background-color: #ade9c8;
+    color: #fff;
+    cursor: pointer;
+}
+
+.edit-node-nav .resize-handle {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    cursor: ew-resize;
+    background-color: rgba(0, 0, 0, 0.1);
+}
