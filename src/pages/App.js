@@ -3,10 +3,8 @@ import Nav from "../components/NavBarComponent/Nav"
 import Footer from "../components/FooterComponent/FooterComponent"
 import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
 import FamilyTree  from '../components/TreeComponent/familyTree';
-import members, { addChild } from '../components/TreeComponent/family';
+import initialFamily, { addChild } from '../components/TreeComponent/family';
 import Header from "../components/HeaderComponent/Header";
-
-
 
 const App = () => {
 
@@ -28,7 +26,7 @@ const App = () => {
     setCurrentMember(member);
   };
 
-  // const [members, setFamilyMembers] = useState(members);
+  const [family, setFamilyMembers] = useState(initialFamily);
 
   const handleCreatePerson = (event) => {
     event.preventDefault();
@@ -39,9 +37,9 @@ const App = () => {
     const isAlive = event.target.alive.checked;
   
     const newMember = {
-      name,
-      dob,
-      isAlive,
+      name: name,
+      dob: dob,
+      isAlive: isAlive,
       children: [],
       avatar: "",
       id: Date.now(), //unique ID, timestamp
@@ -52,19 +50,15 @@ const App = () => {
     
       // Add the new member based on the selected relation
       switch (relation) {
-        case "sibling":
-          // Add sibling logic here
-          break;
-        case "parent":
-          // Add parent logic here
+        case "partner":
           break;
         case "child":
           console.log("adding child ", newMember.name);
-          // const updatedFamilyMembers = addChild(members, currentMember.id, newMember);
-          // setFamilyMembers(updatedFamilyMembers);
+          const updatedFamilyMembers = addChild(family, currentMember.id, newMember);
+          setFamilyMembers(updatedFamilyMembers);
           break;
-        
-        default:
+  
+          default:
           console.error("Invalid relation type:", relation);
       }
     }
@@ -97,7 +91,7 @@ const App = () => {
       contentContainerRef.current.style.transform = "translate(-50%, -50%)";
     }
   };
-  
+
   return (
     <div className="app">
         <Header />
@@ -116,7 +110,7 @@ const App = () => {
         
         <div className="content-container" ref={contentContainerRef}>
           <div className="family-tree-container">
-            <FamilyTree members={members} onMemberClick={handleMemberClick} />
+            <FamilyTree members={family} onMemberClick={handleMemberClick} />
           </div>
           {currentMember && (
             <div className="current-member-container">
