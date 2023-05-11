@@ -64,7 +64,7 @@ export function addChild(family, parentId, newChild) {
     if (member.id === parentId) {
       return {
         ...member,
-        children: [...member.children, newChild]
+        children: [...(member.children || []), newChild]
       };
     }
 
@@ -72,6 +72,32 @@ export function addChild(family, parentId, newChild) {
       return {
         ...member,
         children: addChild(member.children, parentId, newChild)
+      };
+    }
+
+    return member;
+  });
+}
+
+
+export function addPartner(family, memberId, newPartner) {
+  return family.map(member => {
+    if (member.id === memberId) {
+      if (member.partner) {
+        console.warn(`Member with id ${memberId} already has a partner. Partner not added.`);
+        return member;
+      } else {
+        return {
+          ...member,
+          partner: newPartner
+        };
+      }
+    }
+
+    if (member.children && member.children.length) {
+      return {
+        ...member,
+        children: addPartner(member.children, memberId, newPartner)
       };
     }
 

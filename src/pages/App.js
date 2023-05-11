@@ -3,7 +3,7 @@ import Nav from "../components/NavBarComponent/Nav"
 import Footer from "../components/FooterComponent/FooterComponent"
 import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
 import FamilyTree  from '../components/TreeComponent/familyTree';
-import initialFamily, { addChild } from '../components/TreeComponent/family';
+import initialFamily, { addChild, addPartner} from '../components/TreeComponent/family';
 import Header from "../components/HeaderComponent/Header";
 
 const App = () => {
@@ -45,13 +45,25 @@ const App = () => {
       id: Date.now(), //unique ID, timestamp
     };
     
+    // No children
+    const newPartner = {
+      name: name,
+      dob: dob,
+      isAlive: isAlive,
+      avatar: "",
+      id: Date.now(), //unique ID, timestamp
+    };
     // if a current Member is selected 
     if (currentMember) {
     
       // Add the new member based on the selected relation
       switch (relation) {
         case "partner":
+          console.log("adding partner ", newPartner.name);
+          const updatedFamilyWithPartner = addPartner(family, currentMember.id, newPartner);
+          setFamilyMembers(updatedFamilyWithPartner);
           break;
+
         case "child":
           console.log("adding child ", newMember.name);
           const updatedFamilyMembers = addChild(family, currentMember.id, newMember);
