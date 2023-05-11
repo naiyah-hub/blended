@@ -33,35 +33,35 @@ const App = () => {
   
     const name = event.target.name.value;
     const dob = event.target.dob.value;
+    const avatar = event.target.name.avatar;
     const relation = event.target.relation.value;
     const isAlive = event.target.alive.checked;
   
     const newMember = {
       name: name,
       dob: dob,
+      avatar: avatar,
       isAlive: isAlive,
       children: [],
       avatar: "",
+      partner: {},
       id: Date.now(), //unique ID, timestamp
     };
     
-    // No children
-    const newPartner = {
-      name: name,
-      dob: dob,
-      isAlive: isAlive,
-      avatar: "",
-      id: Date.now(), //unique ID, timestamp
-    };
     // if a current Member is selected 
     if (currentMember) {
     
       // Add the new member based on the selected relation
       switch (relation) {
         case "partner":
-          console.log("adding partner ", newPartner.name);
-          const updatedFamilyWithPartner = addPartner(family, currentMember.id, newPartner);
-          setFamilyMembers(updatedFamilyWithPartner);
+          console.log("adding partner ", newMember.name);
+          
+          // if there are no current partners
+          if (!currentMember.partner) {
+            const updatedFamilyWithPartner = addPartner(family, currentMember.id, newMember);
+            setFamilyMembers(updatedFamilyWithPartner);
+          }
+          
           break;
 
         case "child":

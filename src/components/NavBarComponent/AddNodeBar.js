@@ -17,6 +17,10 @@ const AddNodeBar = ({ onGoBackClick , onSubmit }) => {
                     <input type="text" id="dob" required/>
                 </label>
                 <label>
+                    Avatar:
+                    <input type="text" id="avatar"/>
+                </label>
+                <label>
                     <input type="radio" name="relation" value="child" required/> Child
                 </label>
                 <label>
