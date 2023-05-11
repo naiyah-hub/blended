@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Header from "../components/HeaderComponent/Header"
-import Navbar from "../components/NavBarComponent/Navbar"
+import Nav from "../components/NavComponent/Nav"
+import Sidebar from "../components/SideBarComponent/Sidebar"
 import Footer from "../components/FooterComponent/FooterComponent"
-import AddNodeBar from "../components/NavBarComponent/AddNodeBar"
+import AddNodeBar from "../components/SideBarComponent/AddNodeBar"
 import FamilyTree  from '../components/TreeComponent/familyTree';
 import members, { addChild } from '../components/TreeComponent/family';
 
@@ -69,12 +69,12 @@ const App = () => {
   
   return (
     <div className="app">
-      <Header />
+      <Nav/>
       <div className="app-main-content">
-        <div className="app-navbar-container">
+        <div className="app-sidebar-container">
 
           {!showAddNodeBar && (
-            <Navbar onAddNodeClick={handleAddNodeClick} />
+            <Sidebar onAddNodeClick={handleAddNodeClick} />
           )}
           {showAddNodeBar && (
             <AddNodeBar
