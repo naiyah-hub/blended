@@ -23,6 +23,7 @@ const FamilyTree = ({ members, level = 0, onMemberClick }) => {
               {member.partner && (
                 <Member
                   {...member.partner}
+                  disableClick
                   // onMemberClick={onMemberClick} // Disabled partner clicking
                 />
               )}

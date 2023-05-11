@@ -15,11 +15,13 @@ const StyledAvatar = styled.div`
   border: 1px solid;
   border-radius: 50%;
 `;
+
+
 const Member = (member) => {
-  const defaultAvatar = <MdPerson style={{ fontSize: 50 }} />;
-  const { name, avatar, onMemberClick } = member;
+  const defaultAvatar = <MdPerson style={{ fontSize: 80 }} />;
+  const { name, avatar, onMemberClick, disableClick } = member;
   return (
-    <StyledWrapper onClick={() => onMemberClick(member)}>
+    <StyledWrapper onClick={() => !disableClick && onMemberClick(member)}>
       <StyledAvatar>
         {avatar ? <img src={avatar} alt="" /> : defaultAvatar}
       </StyledAvatar>
